@@ -14,7 +14,6 @@ def homePage():
     
     if id != 0:
         if id in cookie:
-            print("remover")
             cookie.remove(id)
         elif id not in cookie:
             cookie.append(id)

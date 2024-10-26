@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Carrinho</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for id in carrinho %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        {% for produto in listaProdutos %}
+                            {% if produto.id == id %}
+                            <img src="{{ url_for('static', filename='imagens/'+produto.imagem+'.jpg') }}" style="width: 100%; height: 225px; object-fit: cover;" alt="JBL">
+                            <div class="card-body">
+                                <p class="card-text">{{produto.nome}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a type="button" class="btn btn-sm btn-outline-secondary" href="?id={{produto.id}}">- Remover do Carrinho</a>
+                                    <small class="text-body-secondary">R$ {{produto.preco}}</small>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Produtos</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for produto in listaProdutos %}
+                {% if produto.id not in carrinho %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="{{ url_for('static', filename='imagens/'+produto.imagem+'.jpg') }}" style="width: 100%; height: 225px; object-fit: cover;" alt="JBL">
+                        <div class="card-body">
+                            <p class="card-text">{{produto.nome}}</p>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a type="button" class="btn btn-sm btn-outline-secondary" href="?id={{produto.id}}">+ Adicionar ao Carrinho</a>
+                                <small class="text-body-secondary">R$ {{produto.preco}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

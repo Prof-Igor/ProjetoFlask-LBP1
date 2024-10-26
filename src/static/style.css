@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Edu+AU+VIC+WA+NT+Hand:wght@500&display=swap');
+
+body {
+    font-family: "Comfortaa", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.font {
+    font-family: "Edu AU VIC WA NT Hand", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}

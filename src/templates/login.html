@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center py-4">
+    <div class="w-50 mt-4 m-auto">
+        <form method="post">
+            {% with mensagens = get_flashed_messages(with_categories=True) %}
+            <div class="mb-3">
+                <label for="user" class="form-label">Usuário</label>
+                <input type="text" class="form-control {% if mensagens %}is-{{mensagens[0][0]}}{% endif %}" id="user" name="user" aria-describedby="Usuário" required>
+                {% if mensagens %}
+                <div id="userFeedback" class="{{mensagens[0][0]}}-feedback">
+                    {{mensagens[0][1]}}
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control {% if mensagens[1] %}is-{{mensagens[1][0]}}{% endif %}" id="senha" name="senha">
+                {% if mensagens[1] %}
+                <div id="senhaFeedback" class="{{mensagens[1][0]}}-feedback">
+                    {{mensagens[1][1]}}
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-secondary">Entrar</button>
+            {% endwith %}
+        </form>
+    </div>
+</div>
+{% endblock %}
